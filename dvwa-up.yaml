@@ -1,0 +1,15 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: dvwa-vs-up
+  namespace: dvwa
+spec:
+  host: dvwa-unsafe.example.com
+  upstreams:
+  - name: dvwa 
+    service: dvwa
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: dvwa
